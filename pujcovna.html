@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./pujcovna/style.css" />
+
+    <title>Cvičení JS - Půjčovna kol</title>
+</head>
+
+<body>
+    <div id="flexbox">
+       
+        <form onsubmit="event.preventDefault();">
+            <fieldset>
+                <legend>Výběr kola</legend>
+                <ul>
+                    <li><input type="checkbox"
+                            onchange="document.getElementById('horskeKolo').disabled = !this.checked;" />horské kolo 500
+                        Kč/den
+                        <input type="number" name="horskeKolo" id="horskeKolo" min="0" max="10" class="pocet" disabled>
+                    </li>
+                    <li><input type="checkbox"
+                            onchange="document.getElementById('detskeKolo').disabled = !this.checked;">dětské
+                        kolo 200 Kč/den <input type="number" id="detskeKolo" min="0" max="10" class="pocet" disabled>
+                    </li>
+                    <li><input type="checkbox"
+                            onchange="document.getElementById('silnicniKolo').disabled = !this.checked;">silniční kolo 1
+                        500
+                        Kč/den<input type="number" id="silnicniKolo" min="0" max="10" class="pocet" disabled>
+                    </li>
+                    <li><input type="checkbox"
+                            onchange="document.getElementById('gravel').disabled = !this.checked;">gravel
+                        2
+                        500 Kč/den<input type="number" id="gravel" min="0" max="10" class="pocet" disabled>
+                    </li>
+                </ul>
+            </fieldset>
+            <fieldset>
+                <legend>Doba zápůjčky</legend>
+                <select id="pocetDnu" name="pocetDnu" form="pocetDnu">
+                    <option value="5dni">5 dní</option>
+                    <option value="tyden">7 dní</option>
+                    <option value="14dni">14 dní</option>
+                    <option value="mesic">1 měsíc</option>
+                </select>
+            </fieldset>
+            <fieldset>
+                <legend>Příslušenství</legend>
+                <input type="radio" id="nosicStresni" name="prislusenstvi" class="fontColor">Střešní cyklonosič (+5% z
+                celkové ceny zápůjčky)
+                <input type="radio" id="nosicTazny" name="prislusenstvi" class="fontColor">Cyklonosič na tažné zařízení
+                (+10% z celkové ceny)<br>
+                <input type="radio" id="bezNosice" name="prislusenstvi" checked class="fontColor">Bez střešního
+                cyklonosiče
+            </fieldset>
+            <fieldset>
+                <legend>Vyplňte Váš celkový rozpočet</legend>
+                <input type="number" name="rozpocet" id="rozpocet">Kč
+                <div id="srovnani" class="result"></div>
+                <script src="./pujcovna/vypocty.js"></script>
+            </fieldset>
+            <fieldset>
+                <legend>Výpočet celkové ceny</legend>
+                <script src="./pujcovna/vypocty.js"></script>
+                <input type="submit" value="Vypočítat"
+                    onclick="vypocet(); srovnejRozpocetCena(); kontrola(email.value);">
+                <div id="cenaCelkem" name="cenaCelkem" data-value="cenaCelkem"></div>
+            </fieldset>
+            <fieldset>
+                <legend>Zadejte prosím Váš e-mail</legend>
+                <input type="email" name="email" id="email" placeholder="povinný údaj">
+                <script src="./pujcovna/vypocty.js"></script>
+            </fieldset>
+            <br>
+            <button class="reload" onclick="window.location.href = window.location.href">Refresh & Reset</button>
+        </form>
+    </div>
+</body>
+
+</html>
