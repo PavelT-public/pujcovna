@@ -1,0 +1,2 @@
+# pujcovna
+school exercise - JavaScript
